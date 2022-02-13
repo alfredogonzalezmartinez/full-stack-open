@@ -1,10 +1,10 @@
 import Part from "./Part.js";
 
-const Content = ({ contentList }) => (
+const Content = ({ parts }) => (
   <div>
-    {contentList.map(({ title, exercises }) => (
-      <Part>
-        {title} {exercises}
+    {parts.map(({ name, exercises }, key) => (
+      <Part key={key}>
+        {name} {exercises}
       </Part>
     ))}
   </div>

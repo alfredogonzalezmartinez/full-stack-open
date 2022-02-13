@@ -1,5 +1,5 @@
-const Total = ({ contentList }) => {
-  const totalExercises = contentList.reduce((total, { exercises }) => {
+const Total = ({ parts }) => {
+  const totalExercises = parts.reduce((total, { exercises }) => {
     return total + exercises;
   }, 0);
 

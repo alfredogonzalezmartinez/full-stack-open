@@ -1,6 +1,6 @@
-# Ejercicios 1.1.-1.2.
+# Ejercicios 1.1.-1.5.
 
-Solución de los [ejercicios 1.1.-1.2.](https://fullstackopen.com/es/part1/introduccion_a_react#ejercicios-1-1-1-2) del curso Full Stack open 2021
+Solución de los [ejercicios 1.1.-1.2.](https://fullstackopen.com/es/part1/introduccion_a_react#ejercicios-1-1-1-2) y los [ejercicios 1.3.-1.5.](https://fullstackopen.com/es/part1/java_script#ejercicios-1-3-1-5) del curso Full Stack open 2021
 
 ## Iniciar la app
 
@@ -71,3 +71,25 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 5. Refactorización del código para crear los componentes `Header`, `Content`, `Total` y `Part`.
 
 6. Extracción de los componentes en archivos individuales en el directorio `Components`.
+
+7. Sustitución de las definiciones de las variables del componente `App` por una única definición.
+   ```
+   const course = {
+      name: 'Half Stack application development',
+      parts: [
+         {
+         name: 'Fundamentals of React',
+         exercises: 10
+         },
+         {
+         name: 'Using props to pass data',
+         exercises: 7
+         },
+         {
+         name: 'State of a component',
+         exercises: 14
+         }
+      ]
+   }
+   ```
+8. Modificación del código para que todo funcione correctamente.
