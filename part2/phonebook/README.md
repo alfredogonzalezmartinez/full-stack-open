@@ -1,12 +1,14 @@
-# Ejercicios 2.6.-2.10.
+# La guía telefónica
 
-Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10) del curso Full Stack open 2021
+Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10) y [ejercicio 2.11.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) del curso Full Stack open 2021
 
 ## Iniciar la app
 
-Usa el comando `npm install` para instalar la dependencias necesarias.
+Usa el comando `npm install --production=false` para instalar las dependencias necesarias, incluidas las de desarrollo.
 
-Despues, puedes iniciar la app usando el comando `npm start`, esto ejecutará un servidor en [http://localhost:3000](http://localhost:3000).
+Después, puedes iniciar json-server con el comando `npm run server` y la app usando el comando `npm start`.
+
+La app será ejecutada en [http://localhost:3000] y json-server servirá la información en [http://localhost:3001/persons].
 
 ## Proceso
 
@@ -68,7 +70,7 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 
 7. Implementación del código necesario para evitar que se registre el mismo nombre múltiples veces en la agenda telefónica.
 
-8. Sustitución del valor iniciar del estado `persons` por el valor dado en el ejercicio.
+8. Sustitución del valor inicial del estado `persons` por el valor dado en el ejercicio.
 
    ```
    const [persons, setPersons] = useState([
@@ -84,3 +86,49 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 10. Ampliación de la funcionalidad para filtrar los registros de la agenda telefónica que son mostrados.
 
 11. Refactorización del código para crear los componentes `Filter`, `Input`, `PersonForm` y `Persons`.
+
+12. Instalación de los paquetes `axios` y `json-server`.
+
+    ```
+    npm install axios
+    npm install json-server --save-dev
+    ```
+
+13. Creación del fichero `db.js` en el directorio `data` con el contenido proporcionado en el ejercicio.
+
+    ```
+    {
+       "persons":[
+          {
+             "name": "Arto Hellas",
+             "number": "040-123456",
+             "id": 1
+          },
+          {
+             "name": "Ada Lovelace",
+             "number": "39-44-5323523",
+             "id": 2
+          },
+          {
+             "name": "Dan Abramov",
+             "number": "12-43-234345",
+             "id": 3
+          },
+          {
+             "name": "Mary Poppendieck",
+             "number": "39-23-6423122",
+             "id": 4
+          }
+       ]
+    }
+    ```
+
+14. Adición de un nuevo script en el archivo `package.json` para iniciar json-server.
+
+    ```
+    "server": "json-server -p3001 --watch ./data/db.json"
+    ```
+
+15. Desarrollo la función `getAllPersons` para obtener la información ofrecida por json-server.
+
+16. Modificación del componente `App` para establecer el estado de `persons` con la información ofrecida por json-server.
