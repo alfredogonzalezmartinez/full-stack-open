@@ -1,4 +1,4 @@
-# Ejercicios 1.1.-1.5.
+# Información del curso
 
 Solución de los [ejercicios 1.1.-1.2.](https://fullstackopen.com/es/part1/introduccion_a_react#ejercicios-1-1-1-2) y los [ejercicios 1.3.-1.5.](https://fullstackopen.com/es/part1/java_script#ejercicios-1-3-1-5) del curso Full Stack open 2021
 

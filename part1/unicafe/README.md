@@ -1,4 +1,4 @@
-# Ejercicios 1.6.-1.11.
+# Unicafe
 
 Solución de los [ejercicios 1.6.-1.11.](https://fullstackopen.com/es/part1/un_estado_mas_complejo_depurando_aplicaciones_react#ejercicios-1-6-1-14) del curso Full Stack open 2021
 

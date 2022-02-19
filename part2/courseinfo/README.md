@@ -1,4 +1,4 @@
-# Ejercicios 2.1.-2.5.
+# Información del curso
 
 Solución de los [ejercicios 2.1.-2.5.](https://fullstackopen.com/es/part2/renderizando_una_coleccion_modulos#ejercicios-2-1-2-5) del curso Full Stack open 2021
 
