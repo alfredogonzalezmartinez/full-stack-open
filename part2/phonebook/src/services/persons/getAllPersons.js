@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const dataUrl = "http://localhost:3001/persons";
+const baseUrl = "http://localhost:3001/persons";
 
 export const getAllPersons = () =>
   axios
-    .get(dataUrl)
+    .get(baseUrl)
     .then((response) => response.data)
     .catch(() => []);

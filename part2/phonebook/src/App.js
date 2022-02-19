@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import { getAllPersons } from "./services/persons/getAllPersons.js";
+import { addNewPerson } from "./services/persons/addNewPerson.js";
+import { updatePerson } from "./services/persons/updatePerson.js";
+import { deletePerson } from "./services/persons/deletePerson.js";
 
 import Filter from "./components/Filter.js";
 import PersonForm from "./components/PersonForm.js";
@@ -17,20 +20,54 @@ const App = () => {
   const handleNameChage = (event) => setNewName(event.target.value);
   const handleNumberChage = (event) => setNewNumber(event.target.value);
   const handleFilterChage = (event) => setFilter(event.target.value);
+
   const handlePersonsAddition = (event) => {
     event.preventDefault();
 
     if (newName === "") return alert("name is empty");
     if (newNumber === "") return alert("number is empty");
-    if (persons.some(({ name }) => name === newName))
-      return alert(`${newName} is already added to phonebook`);
 
-    setPersons((prevPersons) => [
-      ...prevPersons,
-      { name: newName, number: newNumber },
-    ]);
-    setNewName("");
-    setNewNumber("");
+    const dataPerson = { name: newName, number: newNumber };
+    const nameFilter = ({ name }) => name === newName;
+
+    if (persons.some(nameFilter)) {
+      const message = `${dataPerson.name} is alredy added to phonebook. Replace the old number with a new one?`;
+      if (window.confirm(message)) {
+        const { id } = persons.find(nameFilter);
+        updatePerson(id, dataPerson).then((updatedPerson) => {
+          setPersons((prevPersons) =>
+            prevPersons.map((person) =>
+              person.id === id ? updatedPerson : person
+            )
+          );
+          setNewName("");
+          setNewNumber("");
+        });
+      }
+    } else {
+      addNewPerson(dataPerson)
+        .then((newPerson) => {
+          setPersons((prevPersons) => [...prevPersons, newPerson]);
+          setNewName("");
+          setNewNumber("");
+        })
+        .catch(() => alert("Fail to add number"));
+    }
+  };
+
+  const handlePersonDelete = (event) => {
+    const personId = Number.parseInt(event.target.value);
+    const { name } = persons.find((person) => person.id === personId);
+
+    if (window.confirm(`Delete ${name}?`)) {
+      deletePerson(personId).then((response) => {
+        if (response.status === 200) {
+          setPersons((pervPersons) =>
+            pervPersons.filter((person) => person.id !== personId)
+          );
+        }
+      });
+    }
   };
 
   const filteredPersons =
@@ -51,7 +88,7 @@ const App = () => {
         handleNumberChage={handleNumberChage}
         handlePersonsAddition={handlePersonsAddition}
       />
-      <Persons list={filteredPersons} />
+      <Persons list={filteredPersons} handlePersonDelete={handlePersonDelete} />
     </div>
   );
 };

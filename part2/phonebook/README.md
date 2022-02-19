@@ -1,6 +1,6 @@
 # La guía telefónica
 
-Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10) y [ejercicio 2.11.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) del curso Full Stack open 2021
+Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10), [ejercicio 2.11.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) y [ejercicios 2.15.-2.18.](https://fullstackopen.com/es/part2/alterando_datos_en_el_servidor#ejercicios-2-15-2-18) del curso Full Stack open 2021
 
 ## Iniciar la app
 
@@ -129,6 +129,18 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     "server": "json-server -p3001 --watch ./data/db.json"
     ```
 
-15. Desarrollo la función `getAllPersons` para obtener la información ofrecida por json-server.
+15. Desarrollo de la función `getAllPersons` para obtener la información ofrecida por json-server.
 
 16. Modificación del componente `App` para establecer el estado de `persons` con la información ofrecida por json-server.
+
+17. Desarrollo de la función `addNewPerson` para solicitar a json-server que almacene un nuevo contacto.
+
+18. Implementación del código necesario para registrar los nuevos contactos en json-server.
+
+19. Desarrollo de la función `deletePerson` para solicitar a json-server que elimine un contacto.
+
+20. Implementación de un botón junto a cada contacto para eliminarlo.
+
+21. Desarrollo de la función `updatePerson` para solicitar a json-server que modifique un contacto.
+
+22. Implementación del código necesario para poder modificar el contacto de una persona si se vuelve a introducir su nombre.
