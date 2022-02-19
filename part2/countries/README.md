@@ -1,6 +1,6 @@
 # Datos de países
 
-Solución de los [ejercicios 2.12.-2.14.](https://https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) del curso Full Stack open 2021
+Solución de los [ejercicios 2.12.-2.14.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) del curso Full Stack open 2021
 
 ## Iniciar la app
 
