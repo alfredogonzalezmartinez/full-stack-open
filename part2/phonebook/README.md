@@ -1,6 +1,6 @@
 # La guía telefónica
 
-Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10), [ejercicio 2.11.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14) y [ejercicios 2.15.-2.18.](https://fullstackopen.com/es/part2/alterando_datos_en_el_servidor#ejercicios-2-15-2-18) del curso Full Stack open 2021
+Solución de los [ejercicios 2.6.-2.10.](https://fullstackopen.com/es/part2/formularios#ejercicios-2-6-2-10), [ejercicio 2.11.](https://fullstackopen.com/es/part2/obteniendo_datos_del_servidor#ejercicios-2-11-2-14), [ejercicios 2.15.-2.18.](https://fullstackopen.com/es/part2/alterando_datos_en_el_servidor#ejercicios-2-15-2-18) y [ejercicios 2.19.-2.20.](https://fullstackopen.com/es/part2/agregar_estilos_a_la_aplicacion_react#ejercicios-2-19-2-20) del curso Full Stack open 2021
 
 ## Iniciar la app
 
@@ -144,3 +144,9 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 21. Desarrollo de la función `updatePerson` para solicitar a json-server que modifique un contacto.
 
 22. Implementación del código necesario para poder modificar el contacto de una persona si se vuelve a introducir su nombre.
+
+23. Desarrollo del componente `Notification`.
+
+24. Adición de reglas css en `index.css` para estilar el componente `Notification`.
+
+25. Implementación del código necesario para mostrar una notificación que informe si la acción realizada ha sido exitosa o se ha producido un error.
