@@ -8,7 +8,7 @@ Usa el comando `npm install --production=false` para instalar las dependencias n
 
 Después, puedes iniciar json-server con el comando `npm run server` y la app usando el comando `npm start`.
 
-La app será ejecutada en [http://localhost:3000] y json-server servirá la información en [http://localhost:3001/persons].
+La app será ejecutada en [http://localhost:3000](http://localhost:3000) y json-server servirá la información en [http://localhost:3001/persons](http://localhost:3001/persons).
 
 ## Proceso
 
