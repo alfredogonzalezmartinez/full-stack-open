@@ -1,6 +1,6 @@
 # Lista de blogs
 
-Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6) del curso Full Stack open 2021.
+Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7) del curso Full Stack open 2021.
 
 ## Aplicación
 
@@ -25,6 +25,10 @@ Para instalar también las dependencias de desarrollo utilice el comando `npm in
 - **`npm run dev`** Inicia la aplicación en modo desarrollo.
 
 - **`npm run lint`** Ejecuta el linter.
+
+- **`npm run test`** Ejecuta los tests.
+
+- **`npm run test:watch`** Ejecuta los tests continuamente.
 
 ### Endpoints
 
@@ -58,7 +62,7 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
    ```
    "start": "node src/index.js",
    "dev": "nodemon src/index.js",
-   "lint": "eslint .",
+   "lint": "eslint ."
    ```
 
 3. Adición de la configuración del linter en `package.json`
@@ -127,3 +131,32 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 6. Modificación del código para que funcione correctamente.
 
 7. Refactorización del código para extraer las diferentes funcionalidades en módulos separados.
+
+8. Instalación de [Jest](https://jestjs.io/).
+
+   ```
+   npm install -D -E jest
+   ```
+
+9. Adición de la configuración de Jest en el `packaje.json`.
+
+   ```
+   "jest": {
+     "testEnvironment": "node"
+   }
+   ```
+
+10. Adición del entorno de Jest en la configuración del linter en el `packaje.json`.
+
+    ```
+    "env": {
+      "jest": true
+    }
+    ```
+
+11. Adición de scripts para lanzar los tests en `package.json`
+
+    ```
+    "test": "jest --verbose",
+    "test:watch": "jest --verbose --watch"
+    ```
