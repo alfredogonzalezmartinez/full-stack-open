@@ -1,6 +1,6 @@
 # Lista de blogs
 
-Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7) y [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12) del curso Full Stack open 2021.
+Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7), [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12) y [ejercicios 4.13.-4.14.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-13-4-14) del curso Full Stack open 2021.
 
 ## Aplicación
 
@@ -35,13 +35,19 @@ Para instalar también las dependencias de desarrollo utilice el comando `npm in
 ### Endpoints
 
 ```
-GET    /api/blogs
-POST   /api/blogs
+GET     /api/blogs
+POST    /api/blogs
+DELETE  /api/blogs/:id
+PUT     /api/blogs/:id
 ```
 
 - **`GET /api/blogs`** Devuelve todos los blogs en formato JSON.
 
 - **`POST /api/blogs`** Añade un nuevo blog y lo devuelve en formato JSON. Las propiedades `title` y `url` son requeridas.
+
+- **`DELETE /api/blogs/:id`** Elimina el blog con la id especificada.
+
+- **`PUT /api/persons/:id`** Actualiza el blog con la id especificada y lo devuelve en formato JSON.
 
 ## Proceso
 
@@ -189,13 +195,13 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     npm install -D -E supertest
     ```
 
-16. Implementación de tests para probar que al hacer una petición `GET` al end point `/api/blogs` responda con un JSON y la cantidad de blogs sea correcta.
+16. Implementación de tests para probar que al hacer una petición `GET` al endpoint `/api/blogs` responda con un JSON y la cantidad de blogs sea correcta.
 
 17. Refactorizacion del código de la ruta para usar `async`/`await` en lugar de promesas.
 
 18. Implementación de un test para probar que el identificador de los blogs este en la propiedad `id`.
 
-19. Implementación de tests para probar que al hacer una petición `POST` al end point `/api/blogs` se incrementa la cantidad de blogs, el contenido guardado es correcto, si no se pasa la propiedad likes, likes es 0 y si no se pasa una propiedad requerida la respuesta es `400 Bad Request`.
+19. Implementación de tests para probar que al hacer una petición `POST` al endpoint `/api/blogs` se incrementa la cantidad de blogs, el contenido guardado es correcto, si no se pasa la propiedad likes, likes es 0 y si no se pasa una propiedad requerida la respuesta es `400 Bad Request`.
 
 20. Refactorizacion del código de la ruta para usar `async`/`await` en lugar de promesas y cumplir con los tests.
 
@@ -206,3 +212,11 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
     ```
 
 22. Adición de `require('express-async-errors')` en `src/app.js` para que se encargue de manejar los errores.
+
+23. Implementación de la funcionalidad para eliminar un blog cuando se haga una petición `DELETE` al endpoint `/api/persons/:id`.
+
+24. Implementación de tests para probar que al hacer una petición `DELETE` al endpoint `/api/blogs/:id` se reduce la cantidad de blogs, se elimina el blog correcto y si se indica una id con formato incorrecto la respuesta es `400 Bad Request`.
+
+25. Implementación de la funcionalidad para actualizar un blog cuando se haga una petición `PUT` al endpoint `/api/persons/:id`.
+
+26. Implementación de tests para probar que al hacer una petición `PUT` al endpoint `/api/blogs/:id` no se modifica la cantidad de blogs, se modifica el el blog correctamente, si solo se pasa una propiedad, solo se modifica esta y devuelve el blog modificado.

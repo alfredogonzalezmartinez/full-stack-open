@@ -40,6 +40,13 @@ const blogWithoutLikes = {
   url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
 };
 
+const blogInfoForUpdating = {
+  title: 'Canonical string reduction',
+  author: 'Edsger W. Dijkstra',
+  url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
+  likes: 20,
+};
+
 const setUpDbInicialState = async () => {
   await Blog.deleteMany({});
   await Promise.all(initialBlogs.map((blog) => new Blog(blog).save()));
@@ -58,6 +65,7 @@ module.exports = {
   blogWithoutTitle,
   blogWithoutUrl,
   blogWithoutLikes,
+  blogInfoForUpdating,
   setUpDbInicialState,
   getAllBlogsInDb,
   getBlogInDb,
