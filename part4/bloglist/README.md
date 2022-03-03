@@ -1,6 +1,6 @@
 # Lista de blogs
 
-Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7), [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12) y [ejercicios 4.13.-4.14.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-13-4-14) del curso Full Stack open 2021.
+Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7), [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12), [ejercicios 4.13.-4.14.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-13-4-14) y [ejercicios 4.15.-4.22.](https://fullstackopen.com/es/part4/autenticacion_de_token#ejercicios-4-15-4-22) del curso Full Stack open 2021.
 
 ## Aplicación
 
@@ -10,9 +10,11 @@ Para el funcionamiento de la aplicación es necesario contar con una base de dat
 
 - **`MONGODB_URI`** URI para conectarse a la base de datos.
 
-- **`TEST_MONGODB_URI`** URI para conectarse a la base de datos para testing.
-
 - **`PORT`** Puerto en el que se inicia el servidor. Por defecto, 3003.
+
+- **`SECRET`** Palabra secreta para la creación de tokens.
+
+- **`TEST_MONGODB_URI`** URI para conectarse a la base de datos para testing.
 
 ### Dependencias
 
@@ -220,3 +222,37 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 25. Implementación de la funcionalidad para actualizar un blog cuando se haga una petición `PUT` al endpoint `/api/persons/:id`.
 
 26. Implementación de tests para probar que al hacer una petición `PUT` al endpoint `/api/blogs/:id` no se modifica la cantidad de blogs, se modifica el el blog correctamente, si solo se pasa una propiedad, solo se modifica esta y devuelve el blog modificado.
+
+27. Implementación del modelo `User` para definir la estructura de los usuarios.
+
+28. Modificación del modelo `Blog` para que la estructura contenga una referencia al usuario que lo añadió.
+
+29. Instalación de [bcrypt](https://github.com/kelektiv/node.bcrypt.js).
+
+    ```
+    npm install -E bcrypt
+    ```
+
+30. Implementación de la funcionalidad para añadir un usuario cuando se haga una petición `POST` al endpoint `/api/users` y mostrar todos los usuarios cuando se haga una petición `GET`.
+
+31. Implementación de tests para probar que al hacer una petición `POST` al endpoint `/api/users` se guardan correctamente, no se pueden crear usuarios con un nombre de usuario ya existente, el nombre de usuario y contraseña son requeridos y la longitud mínima del nombre de usuario y la contraseña son verificadas.
+
+32. Implementación de las validaciones al añadir un usuario para pasar los tests.
+
+33. Modificación del endpoint `/api/blog` para que cuando se añada un nuevo blog contenga la id del usuario y también guarde la id del nuevo blog en la información del usuario.
+
+34. Instalación de [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken).
+
+    ```
+    npm install -E jsonwebtoken
+    ```
+
+35. Implementación de una ruta de login que verifica usuario/contraseña y devuelve un token.
+
+36. Modificación del endpoint `/api/blogs` para que solo sea posible añadir un blog si se envía un token válido en la petición `POST`.
+
+37. Extracción del proceso de extracción del token de la request a un middleware.
+
+38. Modificación del endpoint `/api/blogs/:id` para que solo sea posible eliminar un blog al hacer una petición `DELETE` con un token que identifique al dueño.
+
+39. Modificar los test del endpoint `/api/blogs` para probar el correcto funcionamiento después de añadir la autenticación con tokens.

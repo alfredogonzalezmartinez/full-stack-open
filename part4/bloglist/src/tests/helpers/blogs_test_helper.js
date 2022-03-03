@@ -1,4 +1,9 @@
-const Blog = require('../models/Blog');
+const jwt = require('jsonwebtoken');
+const Blog = require('../../models/Blog');
+const {
+  getAllUsersInDb,
+  setUpUsersDbInicialState,
+} = require('./users_test_helper');
 
 const initialBlogs = [
   {
@@ -47,9 +52,16 @@ const blogInfoForUpdating = {
   likes: 20,
 };
 
-const setUpDbInicialState = async () => {
+const addBlog = async ({ title, author, url, likes, user }) => {
+  const blog = await new Blog({ title, author, url, likes, user });
+  await blog.save();
+};
+
+const setUpBlogsDbInicialState = async () => {
   await Blog.deleteMany({});
-  await Promise.all(initialBlogs.map((blog) => new Blog(blog).save()));
+  await setUpUsersDbInicialState();
+  const [user] = await getAllUsersInDb();
+  await Promise.all(initialBlogs.map((blog) => addBlog({ ...blog, user: user.id })));
 };
 
 const getAllBlogsInDb = async () => {
@@ -59,14 +71,21 @@ const getAllBlogsInDb = async () => {
 
 const getBlogInDb = async (id) => Blog.findById(id);
 
+const getToken = async () => {
+  const { id, username } = (await getAllUsersInDb())[0];
+  const token = jwt.sign({ id, username }, process.env.SECRET);
+  return token;
+};
+
 module.exports = {
-  initialBlogs,
+  blogInfoForUpdating,
   blogToAdd,
+  blogWithoutLikes,
   blogWithoutTitle,
   blogWithoutUrl,
-  blogWithoutLikes,
-  blogInfoForUpdating,
-  setUpDbInicialState,
   getAllBlogsInDb,
   getBlogInDb,
+  getToken,
+  initialBlogs,
+  setUpBlogsDbInicialState,
 };

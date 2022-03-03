@@ -15,17 +15,21 @@ const blogSchema = new Schema({
     unique: true,
   },
   likes: Number,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 });
 
 blogSchema.plugin(uniqueValidator);
 
 blogSchema.set('toJSON', {
-  transform: (document, object) => {
-    const returnedObject = object;
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
-    return returnedObject;
+  transform: (document, returnedObject) => {
+    const blog = returnedObject;
+    blog.id = blog._id.toString();
+    delete blog._id;
+    delete blog.__v;
   },
 });
 

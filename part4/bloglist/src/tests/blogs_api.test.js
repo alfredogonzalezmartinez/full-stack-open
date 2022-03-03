@@ -3,21 +3,22 @@ const supertest = require('supertest');
 const app = require('../app');
 
 const {
-  initialBlogs,
+  blogInfoForUpdating,
   blogToAdd,
+  blogWithoutLikes,
   blogWithoutTitle,
   blogWithoutUrl,
-  blogWithoutLikes,
-  blogInfoForUpdating,
-  setUpDbInicialState,
   getAllBlogsInDb,
   getBlogInDb,
-} = require('./test_helper');
+  getToken,
+  initialBlogs,
+  setUpBlogsDbInicialState,
+} = require('./helpers/blogs_test_helper');
 
 const api = supertest(app);
 
 beforeEach(async () => {
-  await setUpDbInicialState();
+  await setUpBlogsDbInicialState();
 });
 
 describe('blogs request', () => {
@@ -42,13 +43,21 @@ test('blog has id proterty', async () => {
 
 describe('blog addition', () => {
   test('increments number of blogs in database', async () => {
-    await api.post('/api/blogs').send(blogToAdd);
+    const token = await getToken();
+    await api
+      .post('/api/blogs')
+      .send(blogToAdd)
+      .set({ Authorization: `bearer ${token}` });
     const blogsInDb = await getAllBlogsInDb();
     expect(blogsInDb).toHaveLength(initialBlogs.length + 1);
   });
 
   test('saves right content in database', async () => {
-    const respose = await api.post('/api/blogs').send(blogToAdd);
+    const token = await getToken();
+    const respose = await api
+      .post('/api/blogs')
+      .send(blogToAdd)
+      .set({ Authorization: `bearer ${token}` });
     const { id } = respose.body;
     const newBlog = await getBlogInDb(id);
     expect(newBlog.title).toBe(blogToAdd.title);
@@ -58,24 +67,39 @@ describe('blog addition', () => {
   });
 
   test('without likes, likes are 0', async () => {
-    const respose = await api.post('/api/blogs').send(blogWithoutLikes);
+    const token = await getToken();
+    const respose = await api
+      .post('/api/blogs')
+      .send(blogWithoutLikes)
+      .set({ Authorization: `bearer ${token}` });
     const { id } = respose.body;
     const newBlog = await getBlogInDb(id);
     expect(newBlog.likes).toBe(0);
   });
 
   test('without title property, returns bad request ', async () => {
+    const token = await getToken();
     await api
       .post('/api/blogs')
       .send(blogWithoutTitle)
+      .set({ Authorization: `bearer ${token}` })
       .expect(400);
   });
 
   test('without url property, returns bad request ', async () => {
+    const token = await getToken();
     await api
       .post('/api/blogs')
       .send(blogWithoutUrl)
+      .set({ Authorization: `bearer ${token}` })
       .expect(400);
+  });
+
+  test('without token, returns unauthorized ', async () => {
+    await api
+      .post('/api/blogs')
+      .send(blogToAdd)
+      .expect(401);
   });
 });
 
@@ -83,7 +107,10 @@ describe('blog removig', () => {
   test('decrements number of blogs in database', async () => {
     const [blog] = await getAllBlogsInDb();
     const { id } = blog;
-    await api.delete(`/api/blogs/${id}`);
+    const token = await getToken();
+    await api
+      .delete(`/api/blogs/${id}`)
+      .set({ Authorization: `bearer ${token}` });
     const blogsInDb = await getAllBlogsInDb();
     expect(blogsInDb).toHaveLength(initialBlogs.length - 1);
   });
@@ -91,7 +118,10 @@ describe('blog removig', () => {
   test('deletes the right blog', async () => {
     const [blogToDelete] = await getAllBlogsInDb();
     const { id } = blogToDelete;
-    await api.delete(`/api/blogs/${id}`);
+    const token = await getToken();
+    await api
+      .delete(`/api/blogs/${id}`)
+      .set({ Authorization: `bearer ${token}` });
     const blogsInDb = await getAllBlogsInDb();
     const urls = blogsInDb.map(({ url }) => url);
     expect(urls).not.toContain(blogToDelete.url);
@@ -99,9 +129,19 @@ describe('blog removig', () => {
 
   test('with malformatted id, returns bad request', async () => {
     const id = 1;
+    const token = await getToken();
     await api
       .delete(`/api/blogs/${id}`)
+      .set({ Authorization: `bearer ${token}` })
       .expect(400);
+  });
+
+  test('without token, returns unauthorized ', async () => {
+    const [blogToDelete] = await getAllBlogsInDb();
+    const { id } = blogToDelete;
+    await api
+      .delete(`/api/blogs/${id}`)
+      .expect(401);
   });
 });
 
@@ -110,7 +150,11 @@ describe('blog updating', () => {
     const [blogToUpdate] = await getAllBlogsInDb();
     const { id } = blogToUpdate;
     const { likes } = blogInfoForUpdating;
-    await api.put(`/api/blogs/${id}`).send({ likes });
+    const token = await getToken();
+    await api
+      .put(`/api/blogs/${id}`)
+      .send({ likes })
+      .set({ Authorization: `bearer ${token}` });
     const blogsInDb = await getAllBlogsInDb();
     expect(blogsInDb).toHaveLength(initialBlogs.length);
   });
@@ -118,12 +162,12 @@ describe('blog updating', () => {
   test('with all properties, modifies the blog right', async () => {
     const [blogToUpdate] = await getAllBlogsInDb();
     const { id } = blogToUpdate;
-    const {
-      title, author, url, likes,
-    } = blogInfoForUpdating;
-    await api.put(`/api/blogs/${id}`).send({
-      title, author, url, likes,
-    });
+    const { title, author, url, likes } = blogInfoForUpdating;
+    const token = await getToken();
+    await api
+      .put(`/api/blogs/${id}`)
+      .send({ title, author, url, likes })
+      .set({ Authorization: `bearer ${token}` });
     const updatedBlog = await getBlogInDb(id);
     expect(updatedBlog.title).toBe(title);
     expect(updatedBlog.author).toBe(author);
@@ -136,7 +180,11 @@ describe('blog updating', () => {
     const { id } = blogToUpdate;
     const { likes } = blogInfoForUpdating;
     const oldBlog = await getBlogInDb(id);
-    await api.put(`/api/blogs/${id}`).send({ likes });
+    const token = await getToken();
+    await api
+      .put(`/api/blogs/${id}`)
+      .send({ likes })
+      .set({ Authorization: `bearer ${token}` });
     const updatedBlog = await getBlogInDb(id);
     expect(updatedBlog.title).toBe(oldBlog.title);
     expect(updatedBlog.author).toBe(oldBlog.author);
@@ -148,7 +196,11 @@ describe('blog updating', () => {
     const [blogToUpdate] = await getAllBlogsInDb();
     const { id } = blogToUpdate;
     const { likes } = blogInfoForUpdating;
-    const respose = await api.put(`/api/blogs/${id}`).send({ likes });
+    const token = await getToken();
+    const respose = await api
+      .put(`/api/blogs/${id}`)
+      .send({ likes })
+      .set({ Authorization: `bearer ${token}` });
     const responseBlog = respose.body;
     const updatedBlog = await getBlogInDb(id);
     expect(responseBlog.title).toBe(responseBlog.title);
