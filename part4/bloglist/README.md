@@ -1,6 +1,6 @@
 # Lista de blogs
 
-Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part3/node_js_y_express#ejercicios-3-1-3-6), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7), [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12), [ejercicios 4.13.-4.14.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-13-4-14) y [ejercicios 4.15.-4.22.](https://fullstackopen.com/es/part4/autenticacion_de_token#ejercicios-4-15-4-22) del curso Full Stack open 2021.
+Solución de los [ejercicios 4.1.-4.2.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-1-4-2), [ejercicios 4.3.-4.7.](https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_backend_introduccion_a_las_pruebas#ejercicios-4-3-4-7), [ejercicios 4.8.-4.12.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-8-4-12), [ejercicios 4.13.-4.14.](https://fullstackopen.com/es/part4/porbando_el_backend#ejercicios-4-13-4-14) y [ejercicios 4.15.-4.22.](https://fullstackopen.com/es/part4/autenticacion_de_token#ejercicios-4-15-4-22) del curso Full Stack open 2021.
 
 ## Aplicación
 
