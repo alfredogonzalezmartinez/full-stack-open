@@ -1,6 +1,6 @@
 # Frontend de la lista de blogs
 
-Solución de los [Ejercicios 5.1.-5.4.](https://fullstackopen.com/es/part5/iniciar_sesion_en_la_interfaz#ejercicios-5-1-5-4) y [Ejercicios 5.5.-5.10.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-5-5-10) del curso Full Stack open 2021.
+Solución de los [Ejercicios 5.1.-5.4.](https://fullstackopen.com/es/part5/iniciar_sesion_en_la_interfaz#ejercicios-5-1-5-4), [Ejercicios 5.5.-5.10.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-5-5-10) y [Ejercicios 5.11.-5.12.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-11-5-12) del curso Full Stack open 2021.
 
 ## Aplicación
 
@@ -57,3 +57,21 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 12. Implementación de la funcionalidad para que el orden de los blogs este definido por su número de likes.
 
 13. Implementación de la funcionalidad para que los blogs puedan ser borrados por los usuarios que los crearon.
+
+14. Instalación de [prop-types](https://github.com/facebook/prop-types).
+
+    ```
+    npm install -E prop-types
+    ```
+
+15. Definición de los tipos de las props de los componentes.
+
+16. Instalación de [eslint-plugin-jest](https://github.com/jest-community/eslint-plugin-jest).
+
+    ```
+    npm install -D -E eslint-plugin-jest
+    ```
+
+17. Creación de un archivo `.eslintrc.json` con la configuración del linter.
+
+18. Corrección de los errores marcados por el linter.

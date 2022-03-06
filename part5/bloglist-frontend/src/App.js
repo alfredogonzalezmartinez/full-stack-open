@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { blogService } from './services/blogs'
 import BlogForm from './components/BlogForm'
 import BlogsList from './components/BlogsList'
@@ -15,34 +15,34 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
-    const loggedUser = window.localStorage.getItem("user")
+    const loggedUser = window.localStorage.getItem('user')
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
       setUser(user)
       blogService.setToken(user.token)
-    } 
+    }
   }, [])
 
   useEffect(() => {
-    blogService.getAll().then(blogs => { 
+    blogService.getAll().then(blogs => {
       const sortedBlogs = blogs.sort((blog1, blog2) => blog2.likes - blog1.likes)
       setBlogs(sortedBlogs)
     })
   }, [])
 
-  const handleErrorStatus = (isError = true, message ="error") => {
-    setErrorStatus({ isError, message });
+  const handleErrorStatus = (isError = true, message ='error') => {
+    setErrorStatus({ isError, message })
     setTimeout(() => {
-      setErrorStatus(null);
-    }, 5000);
-  };
+      setErrorStatus(null)
+    }, 5000)
+  }
 
   const handleSesion = (user = null) => {
     setUser(user)
     blogService.setToken(user?.token)
-    user 
-      ? window.localStorage.setItem("user", JSON.stringify(user))
-      : window.localStorage.removeItem("user")
+    user
+      ? window.localStorage.setItem('user', JSON.stringify(user))
+      : window.localStorage.removeItem('user')
   }
 
   const handleNewBlogCreation = async (blog) => {
@@ -53,7 +53,7 @@ const App = () => {
       blogFormRef.current.toggleVisibility()
       return Promise.resolve(newBlog)
     } catch (error) {
-      handleErrorStatus(true, "failed to add blog")
+      handleErrorStatus(true, 'failed to add blog')
       return Promise.reject(error)
     }
   }
@@ -61,40 +61,40 @@ const App = () => {
   const handleBlogLikes = async (id) => {
     try{
       const updatedBlog = await blogService.addLike({ id })
-      setBlogs(blogs => blogs.map( blog => 
-        blog.id === id 
+      setBlogs(blogs => blogs.map( blog =>
+        blog.id === id
           ? updatedBlog
           : blog
       ))
     }catch (error) {
-      handleErrorStatus(true, "failed to add like")
+      handleErrorStatus(true, 'failed to add like')
     }
   }
 
-  const handleBlogRemoval = async (id) =>{
+  const handleBlogRemoval = async (id) => {
     try{
       await blogService.remove({ id })
       setBlogs(blogs => blogs.filter(blog => blog.id !== id))
     }catch (error) {
-      console.log(error);
-      handleErrorStatus(true, "failed to remove blog")
+      console.log(error)
+      handleErrorStatus(true, 'failed to remove blog')
     }
   }
 
-  if (!user) return <LoginForm handleSesion={ handleSesion } />    
-  
+  if (!user) return <LoginForm handleSesion={handleSesion}/>
+
   return (
     <article>
       <h2>blogs</h2>
-      <LoggedHeader username={ user.name } handleSesion={ handleSesion } />      
-      { errorStatus && <Notification errorStatus={ errorStatus } /> }
-      <Togglable ref={ blogFormRef } showButtonLabel='new blog' hideButtonLabel='cancel'>
-        <BlogForm handleNewBlogCreation={ handleNewBlogCreation } />
+      <LoggedHeader username={user.name} handleSesion={handleSesion}/>
+      {errorStatus && <Notification errorStatus={errorStatus}/>}
+      <Togglable ref={blogFormRef} showButtonLabel='new blog' hideButtonLabel='cancel'>
+        <BlogForm handleNewBlogCreation={handleNewBlogCreation}/>
       </Togglable>
-      <BlogsList 
-        blogs={ blogs }
-        handleBlogLikes={ handleBlogLikes }
-        handleBlogRemoval={ handleBlogRemoval }
+      <BlogsList
+        blogs={blogs}
+        handleBlogLikes={handleBlogLikes}
+        handleBlogRemoval={handleBlogRemoval}
       />
     </article>
   )

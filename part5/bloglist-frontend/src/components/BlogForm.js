@@ -1,26 +1,27 @@
-import { useState } from "react"
-import Input from "./Input"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import Input from './Input'
 
-const BlogForm = ({handleNewBlogCreation}) => {
-  const [title, SetTitle] = useState("")
-  const [author, setAuthor] = useState("")
-  const [url, setUrl] = useState("")
+const BlogForm = ({ handleNewBlogCreation }) => {
+  const [title, SetTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
 
-  const handleTitleChanges = ({target}) => SetTitle(target.value)
-  const handleAuthorChanges = ({target}) => setAuthor(target.value)
-  const handleUrlChanges = ({target}) => setUrl(target.value)
+  const handleTitleChanges = ({ target }) => SetTitle(target.value)
+  const handleAuthorChanges = ({ target }) => setAuthor(target.value)
+  const handleUrlChanges = ({ target }) => setUrl(target.value)
 
-  const handleSubmit = async (event) =>{
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const newblog = { title, author, url }
     try {
       await handleNewBlogCreation(newblog)
-      SetTitle("")
-      setAuthor("")
-      setUrl("") 
+      SetTitle('')
+      setAuthor('')
+      setUrl('')
     } catch (error) {
       return
-    } 
+    }
   }
 
   return (
@@ -29,29 +30,33 @@ const BlogForm = ({handleNewBlogCreation}) => {
       <form onSubmit={handleSubmit} >
         <Input
           id="title"
-          label="title:" 
-          type="text" 
-          value={title} 
+          label="title:"
+          type="text"
+          value={title}
           onChange={handleTitleChanges}
         />
         <Input
           id="author"
-          label="author:" 
-          type="text" 
-          value={author} 
+          label="author:"
+          type="text"
+          value={author}
           onChange={handleAuthorChanges}
         />
         <Input
           id="url"
-          label="url:" 
-          type="text" 
-          value={url} 
+          label="url:"
+          type="text"
+          value={url}
           onChange={handleUrlChanges}
         />
         <button>create</button>
       </form>
     </section>
   )
+}
+
+BlogForm.propTypes = {
+  handleNewBlogCreation: PropTypes.func.isRequired,
 }
 
 export default BlogForm
