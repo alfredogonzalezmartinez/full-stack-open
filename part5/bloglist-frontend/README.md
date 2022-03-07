@@ -1,6 +1,6 @@
 # Frontend de la lista de blogs
 
-Solución de los [Ejercicios 5.1.-5.4.](https://fullstackopen.com/es/part5/iniciar_sesion_en_la_interfaz#ejercicios-5-1-5-4), [Ejercicios 5.5.-5.10.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-5-5-10) y [Ejercicios 5.11.-5.12.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-11-5-12) del curso Full Stack open 2021.
+Solución de los [Ejercicios 5.1.-5.4.](https://fullstackopen.com/es/part5/iniciar_sesion_en_la_interfaz#ejercicios-5-1-5-4), [Ejercicios 5.5.-5.10.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-5-5-10), [Ejercicios 5.11.-5.12.](https://fullstackopen.com/es/part5/props_children_y_proptypes#ejercicios-5-11-5-12) y [Ejercicios 5.13.-5.16.](https://fullstackopen.com/es/part5/probando_aplicaciones_react#ejercicios-5-13-5-16) del curso Full Stack open 2021.
 
 ## Aplicación
 
@@ -8,11 +8,13 @@ Para el funcionamiento de la aplicación es necesario contar con un [backend](..
 
 ### Dependencias
 
-Use el comando `npm install` instalar las dependencias.
+Use el comando `npm install` para instalar las dependencias.
 
 ### Scripts
 
 - **`npm start`** Inicia la aplicación.
+
+- **`npm test`** Lanza los tests.
 
 ## Proceso
 
@@ -75,3 +77,23 @@ Para resolver los ejercicios se han realizado los siguientes pasos:
 17. Creación de un archivo `.eslintrc.json` con la configuración del linter.
 
 18. Corrección de los errores marcados por el linter.
+
+19. Instalación de [react-testing-library](https://github.com/testing-library/react-testing-library).
+
+    ```
+    npm install -D -E @testing-library/react @testing-library/jest-dom
+    ```
+
+20. Instalación de jest-watch-typeahead@0.6.5. para solucionar un [error al lanzar los tests](https://github.com/facebook/create-react-app/issues/11043#issuecomment-942472592).
+
+    ```
+    npm install -E jest-watch-typeahead@0.6.5
+    ```
+
+21. Implementación de un test para verificar que el componente `Blog` solo muestra el título y el autor.
+
+22. Implementación de un test para verificar que el componente `Blog` muestra la url y los likes después de pulsar el botón view.
+
+23. Implementación de un test para verificar que el componente `Blog` llame al manejador de likes tantas veces como se pulse el botón like.
+
+24. Implementación de un test para verificar que el componente `BlogForm` llame al manejador de creación de blogs con los valores adecuados.

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Input from './Input'
+import Input from '../Input'
 
 const BlogForm = ({ handleNewBlogCreation }) => {
   const [title, SetTitle] = useState('')
